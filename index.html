@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>برنامه‌ریز روزانه</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;700;900&family=MedievalSharp&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body data-theme="wood">
+
+  <div class="scene">
+
+    <div class="layout">
+
+      <!-- ناحیه اصلی: تخته کارها (چپ) + دکمه‌ها (راست) -->
+      <div class="main-area">
+
+        <!-- تخته بزرگ نمایش کارها -->
+        <div class="task-board">
+          <img src="assets/01_top_bar_5.png" class="board-bg" data-asset="boardBg" alt="">
+          <div class="board-inner">
+            <header class="board-header">
+              <h1 class="fantasy-title">برنامه‌ریز <span>روزانه</span></h1>
+              <p class="board-sub" id="greeting"></p>
+              <p class="board-date" id="todayDate"></p>
+            </header>
+
+            <div class="task-list" id="taskList"></div>
+
+            <div class="empty-state" id="emptyState">
+              <span class="empty-icon">📜</span>
+              <p>هنوز کاری ثبت نشده است…<br>از دکمه‌های کناری اولین کار را اضافه کن!</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- ستون دکمه‌های کناری داخل تخته -->
+        <div class="side-board">
+          <img src="assets/01_top_bar_5.png" class="board-bg" data-asset="boardBg" alt="">
+          <div class="side-column">
+          <button class="field-btn" data-field="name" data-title="نام کار">
+            <img src="assets/35_long_button.png" class="btn-bg" data-asset="longButton" alt="">
+            <span class="field-content">
+              <span class="field-icon">✎</span>
+              <span class="field-text">
+                <span class="field-label">نام کار</span>
+                <span class="field-value" data-empty="برای واردکردن ضربه بزن">برای واردکردن ضربه بزن</span>
+              </span>
+            </span>
+          </button>
+
+          <button class="field-btn" data-field="time" data-title="ساعت و اولویت">
+            <img src="assets/35_long_button.png" class="btn-bg" data-asset="longButton" alt="">
+            <span class="field-content">
+              <span class="field-icon">⏰</span>
+              <span class="field-text">
+                <span class="field-label">ساعت و اولویت</span>
+                <span class="field-value" data-empty="برای واردکردن ضربه بزن">برای واردکردن ضربه بزن</span>
+              </span>
+            </span>
+          </button>
+
+          <button class="field-btn" data-field="desc" data-title="توضیحات">
+            <img src="assets/35_long_button.png" class="btn-bg" data-asset="longButton" alt="">
+            <span class="field-content">
+              <span class="field-icon">🖋</span>
+              <span class="field-text">
+                <span class="field-label">توضیحات</span>
+                <span class="field-value" data-empty="برای واردکردن ضربه بزن">برای واردکردن ضربه بزن</span>
+              </span>
+            </span>
+          </button>
+
+          <button class="submit-btn" id="addTaskBtn">
+            <img src="assets/09_large_button_center.png" class="btn-bg" data-asset="buttonCenter" alt="">
+            <span class="submit-text">افزودن کار</span>
+          </button>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- نوار پایین -->
+      <div class="bottom-bar">
+        <img src="assets/08_large_button_left.png" class="bar-bg" data-asset="buttonBar" alt="">
+        <div class="bar-icons">
+          <button class="icon-btn" id="settingsBtn" aria-label="تنظیمات">
+            <img src="assets/13_settings_square.png" data-asset="iconSettings" alt="">
+          </button>
+          <button class="icon-btn" id="infoBtn" aria-label="اطلاعات">
+            <img src="assets/14_info_square.png" data-asset="iconInfo" alt="">
+          </button>
+          <button class="icon-btn" id="backBtn" aria-label="بازگشت / خروج">
+            <img src="assets/12_back_square.png" data-asset="iconBack" alt="">
+          </button>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- لوگو گوشه صفحه -->
+    <img src="assets/logo_emblem.png" class="corner-logo" alt="Cyrus System">
+
+    <!-- مودال ورود اطلاعات -->
+    <div class="overlay" id="inputOverlay">
+      <div class="modal-board">
+        <img src="assets/01_top_bar_5.png" class="board-bg" data-asset="boardBg" alt="">
+        <div class="modal-inner">
+          <h2 class="modal-title" id="modalTitle"></h2>
+          <div class="modal-body" id="modalBody"></div>
+          <div class="modal-actions">
+            <button class="mini-btn confirm-btn" id="modalConfirm">
+              <img src="assets/35_long_button.png" class="btn-bg" data-asset="longButton" alt="">
+              <span>تایید</span>
+            </button>
+            <button class="mini-btn cancel-btn" id="modalCancel">انصراف</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- پنل تم -->
+    <div class="slide-panel" id="themePanel">
+      <div class="panel-board panel-board-large">
+        <img src="assets/01_top_bar_5.png" class="board-bg" data-asset="boardBg" alt="">
+        <div class="panel-inner">
+          <div class="panel-topbar">
+            <span class="panel-title">تم</span>
+            <button class="icon-btn small" id="themeClose">
+              <img src="assets/13_settings_square.png" data-asset="iconSettings" alt="">
+            </button>
+          </div>
+          <div class="panel-content">
+            <div class="theme-options">
+              <button class="theme-option active" data-theme="wood">
+                <img src="assets/35_long_button.png" class="theme-thumb" alt="">
+                <span class="theme-name">چوبی</span>
+                <img src="assets/theme_check.png" class="theme-check" alt="">
+              </button>
+              <button class="theme-option" data-theme="pink">
+                <img src="assets/pink_long_button.png" class="theme-thumb" alt="">
+                <span class="theme-name">صورتی</span>
+                <img src="assets/theme_check.png" class="theme-check" alt="">
+              </button>
+              <button class="theme-option" data-theme="stone">
+                <img src="assets/asset_03.png" class="theme-thumb" alt="">
+                <span class="theme-name">سنگی</span>
+                <img src="assets/theme_check.png" class="theme-check" alt="">
+              </button>
+            </div>
+            <p class="theme-note">تم‌های بیشتر به‌زودی اضافه می‌شود…</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- پنل اطلاعات -->
+    <div class="slide-panel" id="infoPanel">
+      <div class="panel-board">
+        <img src="assets/01_top_bar_5.png" class="board-bg" data-asset="boardBg" alt="">
+        <div class="panel-inner">
+          <div class="panel-topbar">
+            <span class="panel-brand">app by Cyrus system</span>
+            <button class="icon-btn small" id="infoClose">
+              <img src="assets/14_info_square.png" data-asset="iconInfo" alt="">
+            </button>
+          </div>
+          <div class="panel-content info-content">
+            <img src="assets/logo_emblem.png" class="brand-logo" alt="Cyrus System">
+            <p class="lorem-text">
+              «برنامه‌ریز روزانه» یک برنامه فانتزی برای ثبت و مدیریت کارهای روزمره است؛
+              با آن می‌توانید برای هر کار، نام، ساعت، اولویت و توضیحات ثبت کنید
+              و لیست کارهایتان را روی تخته چوبی تماشا کنید.
+              <br><br>
+              شروع توسعه: سال <bdi class="ltr">1403</bdi>
+              <br><br>
+              <bdi class="ltr">© Cyrus System</bdi>
+              <br>
+              تمامی حقوق مادی و معنوی این نرم‌افزار محفوظ است.
+              هرگونه کپی‌برداری یا توزیع بدون مجوز کتبی ممنوع می‌باشد.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+<script src="script.js"></script>
+</body>
+</html>
