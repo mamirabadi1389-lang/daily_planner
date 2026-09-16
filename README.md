@@ -33,4 +33,4 @@ Questo è il codice sorgente di un’applicazione che ho sviluppato personalment
 Bu, kendi geliştirdiğim bir uygulamanın kaynak kodudur. Projeyi herkesin ücretsiz olarak kullanabilmesi, kodu inceleyebilmesi ve isteyenlerin geliştirilmesine katkıda bulunabilmesi için herkese açık olarak yayınlamaya karar verdim.
 
 🇸🇦 العربية
-هذا هو الكود المصدري لتطبيق قمت بتطويره بنفسي. قررت نشر المشروع بشكل عام حتى يتمكن الجميع من استخدامه مجانًا، والاطلاع على الكود، والمساهمة في تطويره وتحسينه إذا رغبوا في ذلك.
+هذا هو الكود المصدري لتطبيق قمت بتطويره بنفسي. قررت نشر المشروع بشكل عام حتى يتمكن الجميع من استخدامه مجانًا، والاطلاع على الكود، والمساهمة في تطويره وتحسينه إذا رغبوا في ذل.
